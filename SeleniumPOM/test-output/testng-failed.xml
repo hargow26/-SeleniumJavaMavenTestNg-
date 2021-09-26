@@ -5,7 +5,7 @@
     <classes>
       <class name="SeleniumFramework.SeleniumPOM.HomePageTestCases">
         <methods>
-          <include name="login"/>
+          <include name="login" invocation-numbers="0 1"/>
         </methods>
       </class> <!-- SeleniumFramework.SeleniumPOM.HomePageTestCases -->
     </classes>
