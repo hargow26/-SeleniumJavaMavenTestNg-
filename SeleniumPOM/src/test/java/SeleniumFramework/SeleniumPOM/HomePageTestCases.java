@@ -2,6 +2,7 @@ package SeleniumFramework.SeleniumPOM;
 
 import java.io.IOException;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,7 +15,7 @@ import SeleniumFramework.SeleniumPOM.PageObjects.LoginPage;
 public class HomePageTestCases extends TestBase{
 	
 	@Test
-	public void pincode() throws IOException, InterruptedException {
+	public void login() throws IOException, InterruptedException {
 		driver=initialization();
 		
 		driver.get("https://ebooks.com/");
@@ -26,7 +27,7 @@ public class HomePageTestCases extends TestBase{
 		//Explicit wait while using page factory model
 		//https://stackoverflow.com/a/54177337/17003989
 		
-		WebElement element = new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(landingPage.getLogin()));
+		WebElement loginElement = new WebDriverWait(driver, 5).until(ExpectedConditions.elementToBeClickable(landingPage.getLogin()));
 		
 		landingPage.getLogin().click();
 		
@@ -35,6 +36,12 @@ public class HomePageTestCases extends TestBase{
 		LoginPage loginPage=new LoginPage(driver);
 		
 		loginPage.getUsername().sendKeys("harishgowdas2607@gmail.com");
+		
+		Thread.sleep(1000);
+		
+//		Actions actions=new Actions(driver);
+//		
+//		actions.sendKeys(Keys.ENTER).build().perform();
 		
 		loginPage.getContinueBtn().click();
 		
