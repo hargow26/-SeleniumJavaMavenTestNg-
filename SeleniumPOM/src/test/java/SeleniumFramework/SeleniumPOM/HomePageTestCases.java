@@ -8,8 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import SeleniumFramework.SeleniumPOM.PageObjects.LandingPage;
 import SeleniumFramework.SeleniumPOM.PageObjects.LandingPageComponent;
@@ -19,9 +22,19 @@ public class HomePageTestCases extends TestBase {
 
 	@Test(dataProvider = "getData")
 	public void login(String username, String password) throws IOException, InterruptedException {
+		
+		SoftAssert softAssert=new SoftAssert();
+
 		driver = initialization();
 
 		driver.get("https://ebooks.com/");
+
+		String title = driver.getTitle();
+//		System.out.println(title);
+		
+		Reporter.log("Validating the title of the page");
+		
+		softAssert.assertTrue(title.contains("eBooks.com"), "Title of the page is as expected");
 
 		LandingPageComponent landingPageComp = new LandingPageComponent(driver);
 
@@ -29,6 +42,7 @@ public class HomePageTestCases extends TestBase {
 		// https://stackoverflow.com/a/54177337/17003989
 
 		WebDriverWait eWait = new WebDriverWait(driver, 10);
+
 		eWait.until(ExpectedConditions.elementToBeClickable(landingPageComp.getLogin()));
 
 		landingPageComp.getLogin().click();
@@ -39,27 +53,26 @@ public class HomePageTestCases extends TestBase {
 
 		Thread.sleep(1000);
 
-//		Actions actions=new Actions(driver);
-//		
-//		actions.sendKeys(Keys.ENTER).build().perform();
-
 		loginPage.getContinueBtn().click();
 
 		loginPage.getPassword().sendKeys(password);
 
 		loginPage.getSignIn().click();
 
-		landingPageComp.getBrowse().click();
-
-		landingPageComp.getFeedback().click();
-
 		eWait.until(ExpectedConditions.elementToBeClickable(landingPageComp.getProfile()));
+		
+		Reporter.log("Validating if the user successfully logged in");
+
+		Assert.assertEquals(landingPageComp.getProfile().getText(), username,
+				"User  has successfully logged in");
 
 		landingPageComp.getProfile().click();
 
 		landingPageComp.getLogout().click();
 
 		driver.quit();
+		
+		softAssert.assertAll();
 
 	}
 
