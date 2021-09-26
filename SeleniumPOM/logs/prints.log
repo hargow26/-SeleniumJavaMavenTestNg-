@@ -1,0 +1,6 @@
+22:56:55.031 [main] INFO  SeleniumFramework.SeleniumPOM.TestBase - Driver is initialized
+22:56:56.954 [main] INFO  SeleniumFramework.SeleniumPOM.TestBase - Navigating to home page
+22:56:56.970 [main] INFO  SeleniumFramework.SeleniumPOM.TestBase - Successfully validated the title of the page
+22:57:09.321 [main] INFO  SeleniumFramework.SeleniumPOM.TestBase - Driver is initialized
+22:57:10.859 [main] INFO  SeleniumFramework.SeleniumPOM.TestBase - Navigating to home page
+22:57:10.866 [main] INFO  SeleniumFramework.SeleniumPOM.TestBase - Successfully validated the title of the page
