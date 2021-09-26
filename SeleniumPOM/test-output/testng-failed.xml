@@ -5,7 +5,7 @@
     <classes>
       <class name="SeleniumFramework.SeleniumPOM.HomePageTestCases">
         <methods>
-          <include name="pincode"/>
+          <include name="login"/>
         </methods>
       </class> <!-- SeleniumFramework.SeleniumPOM.HomePageTestCases -->
     </classes>
