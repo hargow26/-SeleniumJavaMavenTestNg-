@@ -69,5 +69,12 @@ public class LandingPageComponent {
 	public WebElement getProfile() {
 		return profile;
 	}
+	
+	@FindBy(xpath = "//ul[@class='dropdown-menu']//a[@id='logout']")
+	WebElement logout;
+
+	public WebElement getLogout() {
+		return logout;
+	}
 
 }
