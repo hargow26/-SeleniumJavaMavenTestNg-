@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -20,20 +22,22 @@ import SeleniumFramework.SeleniumPOM.PageObjects.LoginPage;
 
 public class HomePageTestCases extends TestBase {
 
-	@Test(dataProvider = "getData")
-	public void login(String username, String password) throws IOException, InterruptedException {
-		
-		SoftAssert softAssert=new SoftAssert();
-
+	@BeforeMethod
+	public void initialize() throws IOException {
 		driver = initialization();
 
-		driver.get("https://ebooks.com/");
+		driver.get(prop.getProperty("url"));
+	}
+
+	@Test(dataProvider = "getData")
+	public void login(String username, String password) throws IOException, InterruptedException {
+
+		SoftAssert softAssert = new SoftAssert();
 
 		String title = driver.getTitle();
-//		System.out.println(title);
-		
+
 		Reporter.log("Validating the title of the page");
-		
+
 		softAssert.assertTrue(title.contains("eBooks.com"), "Title of the page is as expected");
 
 		LandingPageComponent landingPageComp = new LandingPageComponent(driver);
@@ -60,20 +64,22 @@ public class HomePageTestCases extends TestBase {
 		loginPage.getSignIn().click();
 
 		eWait.until(ExpectedConditions.elementToBeClickable(landingPageComp.getProfile()));
-		
+
 		Reporter.log("Validating if the user successfully logged in");
 
-		Assert.assertEquals(landingPageComp.getProfile().getText(), username,
-				"User  has successfully logged in");
+		Assert.assertEquals(landingPageComp.getProfile().getText(), username, "User  has successfully logged in");
 
 		landingPageComp.getProfile().click();
 
 		landingPageComp.getLogout().click();
 
-		driver.quit();
-		
 		softAssert.assertAll();
 
+	}
+
+	@AfterMethod
+	public void tearDown() {
+		driver.quit();
 	}
 
 	@DataProvider

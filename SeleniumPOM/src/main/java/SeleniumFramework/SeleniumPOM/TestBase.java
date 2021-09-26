@@ -10,7 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.testng.annotations.Test;
 
 public class TestBase {
 
@@ -19,11 +18,13 @@ public class TestBase {
 	public TestBase() {
 
 	}
+	
+	public Properties prop;
 
 	public WebDriver initialization() throws IOException {
 		String currentDirectory = System.getProperty("user.dir");
 
-		Properties prop = new Properties();
+		prop = new Properties();
 
 		FileInputStream fis = new FileInputStream(
 				currentDirectory + "/src\\main\\java\\SeleniumFramework\\SeleniumPOM\\resources\\data.properties");
