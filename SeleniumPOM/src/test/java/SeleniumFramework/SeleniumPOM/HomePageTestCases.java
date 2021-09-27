@@ -19,6 +19,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import SeleniumFramework.SeleniumPOM.TestBase;
 import SeleniumFramework.SeleniumPOM.PageObjects.LandingPage;
 import SeleniumFramework.SeleniumPOM.PageObjects.LandingPageComponent;
 import SeleniumFramework.SeleniumPOM.PageObjects.LoginPage;
@@ -72,8 +73,6 @@ public class HomePageTestCases extends TestBase {
 		loginPage.getSignIn().click();
 
 		eWait.until(ExpectedConditions.elementToBeClickable(landingPageComp.getProfile()));
-
-		Reporter.log("Validating if the user successfully logged in");
 
 		Assert.assertEquals(landingPageComp.getProfile().getText(), username, "User  has successfully logged in");
 
