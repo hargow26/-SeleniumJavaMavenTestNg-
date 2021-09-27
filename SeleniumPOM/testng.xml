@@ -3,7 +3,7 @@
 <suite name="Suite" parallel="classes">
 	<listeners>
 		<listener
-			class-name="SeleniumFramework.SeleniumPOM.utils.listeners" />
+			class-name="SeleniumFramework.SeleniumPOM.utils.Listeners" />
 	</listeners>
 	<test thread-count="5" name="Test">
 		<classes>

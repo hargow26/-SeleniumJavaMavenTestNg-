@@ -7,36 +7,48 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import SeleniumFramework.SeleniumPOM.TestBase;
 
-public class listeners extends TestBase implements ITestListener {
+public class Listeners extends TestBase implements ITestListener {
+	
+	ExtentReports extent=ExtentReporterNG.getReportObject();
+	ExtentTest test;
 
 	@Override
 	public void onTestStart(ITestResult result) {
 		// TODO Auto-generated method stub
+		test = extent.createTest(result.getMethod().getMethodName());
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
 		// TODO Auto-generated method stub
+		test.log(Status.PASS, "Test Passed");
 	}
 
 	@Override
 	public void onTestFailure(ITestResult result) {
-		//Screenshot
+		// Screenshot
+		test.fail(result.getThrowable());
+		
 		WebDriver driver = null;
-		
-		String testMethodName=result.getMethod().getMethodName();
-		
+
+		String testMethodName = result.getMethod().getMethodName();
+
 		try {
-			driver=(WebDriver)result.getTestClass().getRealClass().getDeclaredField("driver").get(result.getInstance());
+			driver = (WebDriver) result.getTestClass().getRealClass().getDeclaredField("driver")
+					.get(result.getInstance());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		try {
-			getScreenShot(testMethodName,driver);
+			getScreenShot(testMethodName, driver);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,6 +78,7 @@ public class listeners extends TestBase implements ITestListener {
 	@Override
 	public void onFinish(ITestContext context) {
 		// TODO Auto-generated method stub
+		extent.flush();
 	}
 
 }
