@@ -1,0 +1,5 @@
+00:02:45.386 [TestNG-test=Test-1] INFO  SeleniumFramework.SeleniumPOM.TestBase - Driver is initialized
+00:02:46.893 [TestNG-test=Test-1] INFO  SeleniumFramework.SeleniumPOM.TestBase - Navigating to home page
+00:02:46.910 [TestNG-test=Test-1] INFO  SeleniumFramework.SeleniumPOM.TestBase - Successfully validated the title of the page
+00:03:31.127 [TestNG-test=Test-1] INFO  SeleniumFramework.SeleniumPOM.TestBase - Driver is initialized
+00:03:33.296 [TestNG-test=Test-1] INFO  SeleniumFramework.SeleniumPOM.TestBase - Navigating to home page

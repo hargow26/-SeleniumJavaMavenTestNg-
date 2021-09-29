@@ -71,10 +71,11 @@ public class TestBase {
 		return driver;
 	}
 
-	public void getScreenShot(String testCaseName, WebDriver driver) throws IOException {
+	public String getScreenShot(String testCaseName, WebDriver driver) throws IOException {
 		File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String destinationFile = System.getProperty("user.dir") + "\\ListenersReports\\" + testCaseName + ".png";
 		FileUtils.copyFile(file, new File(destinationFile));
+		return destinationFile;
 	}
 
 }

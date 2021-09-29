@@ -50,7 +50,7 @@ public class HomePageTestCases extends TestBase {
 
 		String title = driver.getTitle();
 
-		softAssert.assertTrue(title.contains("eBooks.com"), "Title of the page is as expected");
+		softAssert.assertTrue(title.contains("ebooks.com"), "Title of the page is as expected");
 		log.info("Successfully validated the title of the page");
 
 		LandingPageComponent landingPageComp = new LandingPageComponent(driver);
