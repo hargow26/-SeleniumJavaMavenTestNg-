@@ -1,5 +1,6 @@
-00:02:45.386 [TestNG-test=Test-1] INFO  SeleniumFramework.SeleniumPOM.TestBase - Driver is initialized
-00:02:46.893 [TestNG-test=Test-1] INFO  SeleniumFramework.SeleniumPOM.TestBase - Navigating to home page
-00:02:46.910 [TestNG-test=Test-1] INFO  SeleniumFramework.SeleniumPOM.TestBase - Successfully validated the title of the page
-00:03:31.127 [TestNG-test=Test-1] INFO  SeleniumFramework.SeleniumPOM.TestBase - Driver is initialized
-00:03:33.296 [TestNG-test=Test-1] INFO  SeleniumFramework.SeleniumPOM.TestBase - Navigating to home page
+21:27:23.108 [main] INFO  SeleniumFramework.SeleniumPOM.TestBase - Navigating to home page
+21:27:23.475 [main] INFO  SeleniumFramework.SeleniumPOM.TestBase - Validating the title of the page
+21:27:24.813 [main] INFO  SeleniumFramework.SeleniumPOM.TestBase - Logging in to the account
+21:27:29.661 [main] INFO  SeleniumFramework.SeleniumPOM.TestBase - Validating successful login
+21:27:34.492 [main] INFO  SeleniumFramework.SeleniumPOM.TestBase - Driver is initialized
+21:27:36.567 [main] INFO  SeleniumFramework.SeleniumPOM.TestBase - Navigating to home page

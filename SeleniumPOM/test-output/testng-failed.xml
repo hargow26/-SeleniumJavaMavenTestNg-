@@ -3,11 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="SeleniumFramework.SeleniumPOM.HomePageTestCases">
+      <class name="SeleniumFramework.SeleniumPOM.TestCase_001">
         <methods>
-          <include name="login" invocation-numbers="0"/>
+          <include name="initialize"/>
+          <include name="login" invocation-numbers="0 1"/>
+          <include name="tearDown"/>
         </methods>
-      </class> <!-- SeleniumFramework.SeleniumPOM.HomePageTestCases -->
+      </class> <!-- SeleniumFramework.SeleniumPOM.TestCase_001 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
