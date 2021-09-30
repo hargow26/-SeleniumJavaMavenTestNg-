@@ -13,12 +13,14 @@ public class MyAccountPage {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+	
+	@FindBy(xpath = "//a[@class='link-overlay' and contains(@href,'wishlist')]")
+	WebElement wishList;
 
-	@FindBy(xpath = "//a[@id='login']")
-	WebElement login;
-
-	public WebElement getLogin() {
-		return login;
+	public MyWishListPage WishList() {
+		wishList.click();
+		MyWishListPage myWish=new MyWishListPage(driver);
+		return myWish;
 	}
-
+	
 }

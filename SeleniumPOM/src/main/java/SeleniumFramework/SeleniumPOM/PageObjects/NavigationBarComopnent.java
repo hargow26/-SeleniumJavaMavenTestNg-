@@ -4,21 +4,40 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class LandingPageComponent {
+public class NavigationBarComopnent {
 
 	private WebDriver driver;
 
-	public LandingPageComponent(WebDriver driver) {
+	public NavigationBarComopnent(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 
 	@FindBy(xpath = "//a[@id='login']")
-	WebElement login;
+	WebElement loginBtn;
+	
+	public WebElement getLoginBtn() {
+		return loginBtn;
+	}
 
-	public WebElement getLogin() {
-		return login;
+	public MyAccountPage login(String username, String password) throws InterruptedException {
+		LoginPage loginPage=new LoginPage(driver);
+		
+		loginPage.getUsername().sendKeys(username);
+
+		Thread.sleep(2000);
+
+		loginPage.getContinueBtn();
+		
+		loginPage.getContinueBtn().click();
+
+		loginPage.getPassword().sendKeys(password);
+
+		loginPage.getSignIn().click();
+		
+		return new MyAccountPage(driver);
 	}
 
 	@FindBy(xpath = "//a[contains(text(),'Browse')]")

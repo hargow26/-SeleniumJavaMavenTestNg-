@@ -25,10 +25,11 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import SeleniumFramework.SeleniumPOM.TestBase;
 import SeleniumFramework.SeleniumPOM.PageObjects.LandingPage;
-import SeleniumFramework.SeleniumPOM.PageObjects.LandingPageComponent;
+import SeleniumFramework.SeleniumPOM.PageObjects.NavigationBarComopnent;
+import SeleniumFramework.SeleniumPOM.utils.TestUtils;
 import SeleniumFramework.SeleniumPOM.PageObjects.LoginPage;
 
-public class HomePageTestCases extends TestBase {
+public class TestCase_001 extends TestBase {
 
 	public WebDriver driver;
 
@@ -45,6 +46,10 @@ public class HomePageTestCases extends TestBase {
 
 	@Test(dataProvider = "getData")
 	public void login(String username, String password) throws IOException, InterruptedException {
+		
+		LandingPage ln=new LandingPage(driver);
+		
+		ln.getSubjects(TestUtils.poular);
 
 		SoftAssert softAssert = new SoftAssert();
 
@@ -53,41 +58,32 @@ public class HomePageTestCases extends TestBase {
 		log.info("Validating the title of the page");
 		softAssert.assertTrue(title.contains("eBooks.com"));
 
-		LandingPageComponent landingPageComp = new LandingPageComponent(driver);
+		NavigationBarComopnent navComp = new NavigationBarComopnent(driver);
 
 		// Explicit wait while using page factory model
 		// https://stackoverflow.com/a/54177337/17003989
 
-		WebDriverWait eWait = new WebDriverWait(driver, 10);
+		WebDriverWait eWait = explicitWait(TestUtils.longWait);
+		
+		eWait.until(ExpectedConditions.elementToBeClickable(navComp.getLoginBtn()))	;
+		
+		navComp.getLoginBtn().click();
 
-		eWait.until(ExpectedConditions.elementToBeClickable(landingPageComp.getLogin()));
+		log.info("Logging in to the account");
+		
+		navComp.login(username, password);
 
-		landingPageComp.getLogin().click();
+		eWait.until(ExpectedConditions.elementToBeClickable(navComp.getProfile()));
+		
+		log.info("Validating successful login");
 
-		LoginPage loginPage = new LoginPage(driver);
+		Assert.assertEquals(navComp.getProfile().getText(), username, "User  failed to logged in");
 
-		loginPage.getUsername().sendKeys(username);
+		navComp.getProfile().click();
 
-		Thread.sleep(2000);
-
-		eWait.until(ExpectedConditions.elementToBeClickable(loginPage.getContinueBtn()));
-
-		loginPage.getContinueBtn().click();
-
-		loginPage.getPassword().sendKeys(password);
-
-		loginPage.getSignIn().click();
-
-		eWait.until(ExpectedConditions.elementToBeClickable(landingPageComp.getProfile()));
-
-		Assert.assertEquals(landingPageComp.getProfile().getText(), username, "User  has successfully logged in");
-
-		landingPageComp.getProfile().click();
-
-		landingPageComp.getLogout().click();
+		navComp.getLogout().click();
 
 		softAssert.assertAll();
-
 	}
 
 	@AfterMethod

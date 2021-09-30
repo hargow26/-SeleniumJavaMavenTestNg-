@@ -7,7 +7,8 @@
 	</listeners>
 	<test thread-count="5" name="Test">
 		<classes>
-			<class name="SeleniumFramework.SeleniumPOM.HomePageTestCases" />
+			<class name="SeleniumFramework.SeleniumPOM.TestCase_001" />
+			<class name="SeleniumFramework.SeleniumPOM.TestCase_002" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
