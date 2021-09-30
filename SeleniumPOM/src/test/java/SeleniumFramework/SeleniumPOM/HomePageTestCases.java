@@ -29,11 +29,11 @@ import SeleniumFramework.SeleniumPOM.PageObjects.LandingPageComponent;
 import SeleniumFramework.SeleniumPOM.PageObjects.LoginPage;
 
 public class HomePageTestCases extends TestBase {
-	
+
 	public WebDriver driver;
-	
-	public static Logger log=LogManager.getLogger(TestBase.class.getName());
-	
+
+	public static Logger log = LogManager.getLogger(TestBase.class.getName());
+
 	@BeforeMethod
 	public void initialize() throws IOException {
 		this.driver = initialization();
@@ -50,8 +50,8 @@ public class HomePageTestCases extends TestBase {
 
 		String title = driver.getTitle();
 
-		softAssert.assertTrue(title.contains("ebooks.com"), "Title of the page is as expected");
-		log.info("Successfully validated the title of the page");
+		log.info("Validating the title of the page");
+		softAssert.assertTrue(title.contains("eBooks.com"));
 
 		LandingPageComponent landingPageComp = new LandingPageComponent(driver);
 
@@ -69,11 +69,11 @@ public class HomePageTestCases extends TestBase {
 		loginPage.getUsername().sendKeys(username);
 
 		Thread.sleep(2000);
-		
+
 		eWait.until(ExpectedConditions.elementToBeClickable(loginPage.getContinueBtn()));
 
 		loginPage.getContinueBtn().click();
-		
+
 		loginPage.getPassword().sendKeys(password);
 
 		loginPage.getSignIn().click();
@@ -105,7 +105,6 @@ public class HomePageTestCases extends TestBase {
 		obj[1][1] = "Test@123";
 
 		return obj;
-
 	}
 
 }
