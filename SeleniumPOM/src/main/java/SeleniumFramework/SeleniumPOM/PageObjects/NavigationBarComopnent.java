@@ -43,8 +43,9 @@ public class NavigationBarComopnent {
 	@FindBy(xpath = "//a[contains(text(),'Browse')]")
 	WebElement browse;
 
-	public WebElement getBrowse() {
-		return browse;
+	public BrowsePage getBrowsePage() {
+		browse.click();
+		return new BrowsePage(driver);
 	}
 
 	@FindBy(xpath = "//a[contains(text(),'Gift Cert')]")

@@ -11,10 +11,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import SeleniumFramework.SeleniumPOM.PageObjects.LoginPage;
 import SeleniumFramework.SeleniumPOM.PageObjects.MyAccountPage;
 import SeleniumFramework.SeleniumPOM.PageObjects.MyWishListPage;
 import SeleniumFramework.SeleniumPOM.PageObjects.NavigationBarComopnent;
+import SeleniumFramework.SeleniumPOM.utils.TestUtils;
 
 public class TestCase_002 extends TestBase {
 
@@ -32,13 +32,17 @@ public class TestCase_002 extends TestBase {
 	}
 
 	@Test
-	public void wishList() {
+	public void creatWishList() {
 		try {
 
 			NavigationBarComopnent navComp = new NavigationBarComopnent(driver);
 
-			WebDriverWait eWait = new WebDriverWait(driver, 10);
-
+			WebDriverWait eWait = explicitWait(TestUtils.longWait);
+			
+			eWait.until(ExpectedConditions.elementToBeClickable(navComp.getLoginBtn()))	;
+			
+			navComp.getLoginBtn().click();
+			
 			MyAccountPage myAccount=navComp.login("harishgowdas2607@gmail.com","PracticeDaily10");
 			
 			MyWishListPage myWish=myAccount.WishList();
@@ -55,7 +59,7 @@ public class TestCase_002 extends TestBase {
 		}
 
 		catch (Exception e) {
-
+			System.out.println(e.getStackTrace());
 		}
 	}
 
