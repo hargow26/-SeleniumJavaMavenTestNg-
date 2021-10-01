@@ -40,9 +40,9 @@ public class SearchAddBooksToWishlist extends TestBase {
 
 			eWait.until(ExpectedConditions.elementToBeClickable(navComp.getLoginBtn()));
 
-			navComp.getLoginBtn().click();
-
-			MyAccountPage myAccount = navComp.login("harishgowdas2607@gmail.com", "PracticeDaily10");
+//			navComp.getLoginBtn().click();
+//
+//			MyAccountPage myAccount = navComp.login("harishgowdas2607@gmail.com", "PracticeDaily10");
 			
 			BrowsePage browsePage=navComp.getBrowsePage();
 			
@@ -57,7 +57,7 @@ public class SearchAddBooksToWishlist extends TestBase {
 			
 			
 		} 
-		catch (InterruptedException e) {
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
