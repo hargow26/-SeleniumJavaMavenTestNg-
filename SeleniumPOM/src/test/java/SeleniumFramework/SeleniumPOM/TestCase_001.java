@@ -29,6 +29,14 @@ import SeleniumFramework.SeleniumPOM.PageObjects.NavigationBarComopnent;
 import SeleniumFramework.SeleniumPOM.utils.TestUtils;
 import SeleniumFramework.SeleniumPOM.PageObjects.LoginPage;
 
+/**
+ * This test case includes logging into the website, validating the title,
+ * validating the logged in user and logging out of the application successfully
+ * Used data provider for the username and password data
+ * 
+ * @author Harish Gowda S
+ *
+ */
 public class TestCase_001 extends TestBase {
 
 	public WebDriver driver;
@@ -46,9 +54,9 @@ public class TestCase_001 extends TestBase {
 
 	@Test(dataProvider = "getData")
 	public void login(String username, String password) throws IOException, InterruptedException {
-		
-		LandingPage ln=new LandingPage(driver);
-		
+
+		LandingPage ln = new LandingPage(driver);
+
 		ln.getSubjects(TestUtils.poular);
 
 		SoftAssert softAssert = new SoftAssert();
@@ -64,17 +72,17 @@ public class TestCase_001 extends TestBase {
 		// https://stackoverflow.com/a/54177337/17003989
 
 		WebDriverWait eWait = explicitWait(TestUtils.longWait);
-		
-		eWait.until(ExpectedConditions.elementToBeClickable(navComp.getLoginBtn()))	;
-		
+
+		eWait.until(ExpectedConditions.elementToBeClickable(navComp.getLoginBtn()));
+
 		navComp.getLoginBtn().click();
 
 		log.info("Logging in to the account");
-		
+
 		navComp.login(username, password);
 
 		eWait.until(ExpectedConditions.elementToBeClickable(navComp.getProfile()));
-		
+
 		log.info("Validating successful login");
 
 		Assert.assertEquals(navComp.getProfile().getText(), username, "User  failed to logged in");

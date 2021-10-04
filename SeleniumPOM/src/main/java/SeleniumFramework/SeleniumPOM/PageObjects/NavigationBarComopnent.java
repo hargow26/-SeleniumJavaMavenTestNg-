@@ -2,10 +2,16 @@ package SeleniumFramework.SeleniumPOM.PageObjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+/**
+ * All the webElements found in the navigation bar present in the ebook.com website
+ * @author Harish Gowda S
+ *
+ */
 public class NavigationBarComopnent {
 
 	private WebDriver driver;
@@ -15,6 +21,15 @@ public class NavigationBarComopnent {
 		PageFactory.initElements(driver, this);
 	}
 
+	@CacheLookup
+	@FindBy(xpath = "//a[contains(text(),'Browse')]")
+	WebElement browse;
+
+	public BrowsePage getBrowsePage() {
+		browse.click();
+		return new BrowsePage(driver);
+	}
+	
 	@FindBy(xpath = "//a[@id='login']")
 	WebElement loginBtn;
 	
@@ -22,6 +37,13 @@ public class NavigationBarComopnent {
 		return loginBtn;
 	}
 
+	/**
+	 * takes the username and password and logs into the application using the webElements present in the MyLogin page
+	 * @param username
+	 * @param password
+	 * @return
+	 * @throws InterruptedException
+	 */
 	public MyAccountPage login(String username, String password) throws InterruptedException {
 		LoginPage loginPage=new LoginPage(driver);
 		
@@ -40,14 +62,7 @@ public class NavigationBarComopnent {
 		return new MyAccountPage(driver);
 	}
 
-	@FindBy(xpath = "//a[contains(text(),'Browse')]")
-	WebElement browse;
-
-	public BrowsePage getBrowsePage() {
-		browse.click();
-		return new BrowsePage(driver);
-	}
-
+	@CacheLookup
 	@FindBy(xpath = "//a[contains(text(),'Gift Cert')]")
 	WebElement giftCertificate;
 
@@ -55,6 +70,7 @@ public class NavigationBarComopnent {
 		return giftCertificate;
 	}
 
+	@CacheLookup
 	@FindBy(xpath = "//a[contains(text(),'DRM-Free Books')]")
 	WebElement drmFreeBooks;
 
@@ -62,6 +78,7 @@ public class NavigationBarComopnent {
 		return drmFreeBooks;
 	}
 
+	@CacheLookup
 	@FindBy(xpath = "//a[contains(text(),'Feedback')]")
 	WebElement feedback;
 
@@ -69,6 +86,7 @@ public class NavigationBarComopnent {
 		return feedback;
 	}
 
+	@CacheLookup
 	@FindBy(xpath = "//a[@href='https://about.ebooks.com/']")
 	WebElement aboutUs;
 
@@ -90,6 +108,7 @@ public class NavigationBarComopnent {
 		return profile;
 	}
 	
+	@CacheLookup
 	@FindBy(xpath = "//ul[@class='dropdown-menu']//a[@id='logout']")
 	WebElement logout;
 

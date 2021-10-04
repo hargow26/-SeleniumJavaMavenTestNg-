@@ -3,6 +3,11 @@ package SeleniumFramework.SeleniumPOM.utils;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
+/**
+ * includes the code to generate the Extent report for the ran test cases
+ * @author Harish Gowda S
+ *
+ */
 public class ExtentReporterNG {
 	
 	static ExtentReports extent;

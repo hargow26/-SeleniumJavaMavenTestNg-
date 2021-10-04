@@ -17,6 +17,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+/**
+ * This class creates the new driver instance depending on the required web
+ * browser, implicit wait, taking screenshot
+ * 
+ * @author Harish Gowda S
+ *
+ */
+
 public class TestBase {
 
 	public WebDriver driver;
@@ -73,14 +81,30 @@ public class TestBase {
 		return driver;
 	}
 
+	/**
+	 * Takes screenshot when the method is called and the screenshot is added to
+	 * ListenerReports file
+	 * 
+	 * @param testCaseName the testcase name that was failed in order to identify
+	 *                     the failed test case and their respective screenshot
+	 * @param driver
+	 * @return
+	 * @throws IOException
+	 */
+
 	public String getScreenShot(String testCaseName, WebDriver driver) throws IOException {
 		File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String destinationFile = System.getProperty("user.dir") + "\\ListenersReports\\" + testCaseName + ".png";
 		FileUtils.copyFile(file, new File(destinationFile));
 		return destinationFile;
 	}
-	
-	public WebDriverWait explicitWait(long waitTime ) {
+
+	/**This method creates a new explicitwait object that can be used in the extended test cases class
+	 * 
+	 * @param waitTime
+	 * @return
+	 */
+	public WebDriverWait explicitWait(long waitTime) {
 		WebDriverWait eWait = new WebDriverWait(driver, waitTime);
 		return eWait;
 	}

@@ -5,6 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+/**Object repository of webElements found in the login page of the ebook.comwe app
+ * 
+ * @author Harish Gowda S
+ *
+ */
 public class LoginPage {
 	
 	private WebDriver driver;

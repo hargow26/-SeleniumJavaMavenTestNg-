@@ -13,12 +13,18 @@ import com.aventstack.extentreports.Status;
 
 import SeleniumFramework.SeleniumPOM.TestBase;
 
+/**
+ * Listener class when a test suite is run decides what happens when the test is
+ * run successfully, or upon failure, or upon start or finsh
+ * 
+ * @author Harish Gowda S
+ *
+ */
 public class Listeners extends TestBase implements ITestListener {
-	
-	ExtentReports extent=ExtentReporterNG.getReportObject();
+
+	ExtentReports extent = ExtentReporterNG.getReportObject();
 	ExtentTest test;
-	ThreadLocal<ExtentTest> extentTest =new ThreadLocal<ExtentTest>();
-	
+	ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
 
 	@Override
 	public void onTestStart(ITestResult result) {
@@ -37,7 +43,7 @@ public class Listeners extends TestBase implements ITestListener {
 	public void onTestFailure(ITestResult result) {
 		// Screenshot
 		extentTest.get().fail(result.getThrowable());
-		
+
 		WebDriver driver = null;
 
 		String testMethodName = result.getMethod().getMethodName();

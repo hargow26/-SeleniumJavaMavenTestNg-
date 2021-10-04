@@ -5,6 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+/**
+ * Object repository of all the WebElements found in the MyWishList page of the Eboojs.com web app
+ * @author Harish Gowda S
+ *
+ */
 public class MyWishListPage {
 	
 	private WebDriver driver;
@@ -27,7 +32,6 @@ public class MyWishListPage {
 	public WebElement getNameOfList() {
 		return nameOfList;
 	}
-	
 	
 	@FindBy(xpath="//button[text()='Save']")
 	WebElement saveBtn;
